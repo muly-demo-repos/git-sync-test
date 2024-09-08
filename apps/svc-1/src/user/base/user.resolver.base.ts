@@ -32,9 +32,16 @@ import { UserService } from "../user.service";
 export class UserResolverBase {
   constructor(
     protected readonly service: UserService,
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
+  @graphql.Query(() => MetaQueryPayload)
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -51,7 +58,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [User])
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
@@ -62,7 +75,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => User, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "own",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
@@ -77,7 +96,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => User)
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "create",
+    possession: "any",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "create",
@@ -91,7 +116,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => User)
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
@@ -114,6 +145,11 @@ export class UserResolverBase {
   }
 
   @graphql.Mutation(() => User)
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "delete",
+    possession: "any",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "delete",

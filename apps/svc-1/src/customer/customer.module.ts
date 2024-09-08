@@ -6,7 +6,11 @@ import { CustomerController } from "./customer.controller";
 import { CustomerResolver } from "./customer.resolver";
 
 @Module({
-  imports: [CustomerModuleBase, forwardRef(() => AuthModule)],
+  imports: [
+    CustomerModuleBase,
+    forwardRef(() => AuthModule),
+    forwardRef(() => AuthModule),
+  ],
   controllers: [CustomerController],
   providers: [CustomerService, CustomerResolver],
   exports: [CustomerService],

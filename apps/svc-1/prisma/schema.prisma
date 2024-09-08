@@ -15,6 +15,7 @@ model User {
   lastName  String?
   password  String
   roles     Json
+  sessionId String?
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
