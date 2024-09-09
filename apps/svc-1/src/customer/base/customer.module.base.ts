@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { Module } from "@nestjs/common";
 import { ACLModule } from "../../auth/acl.module";
 @Module({
-  imports: [ACLModule, ACLModule],
-  exports: [ACLModule, ACLModule],
+  imports: [ACLModule],
+  exports: [ACLModule],
 })
 export class CustomerModuleBase {}

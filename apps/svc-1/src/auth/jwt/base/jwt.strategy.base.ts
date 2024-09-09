@@ -35,10 +35,6 @@ export class JwtStrategyBase
     ) {
       throw new Error("User roles is not a valid value");
     }
-    return {
-      ...user,
-      sessionId: payload.sessionId,
-      roles: user.roles as string[],
-    };
+    return { ...user, roles: user.roles as string[] };
   }
 }
