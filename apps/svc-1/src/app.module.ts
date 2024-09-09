@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { CustomerModule } from "./customer/customer.module";
-import { CustomModuleOneModule } from "./custommoduleone/custommoduleone.module";
+import { custommoduleoneModule } from "./custommoduleone/custommoduleone.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -21,7 +21,7 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     UserModule,
     CustomerModule,
-    CustomModuleOneModule,
+    custommoduleoneModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-import { CustomModuleOneService } from "./custommoduleone.service";
-import { CustomModuleOneController } from "./custommoduleone.controller";
-import { CustomModuleOneResolver } from "./custommoduleone.resolver";
+import { custommoduleoneService } from "./custommoduleone.service";
+import { custommoduleoneController } from "./custommoduleone.controller";
+import { custommoduleoneResolver } from "./custommoduleone.resolver";
 
 @Module({
-  controllers: [CustomModuleOneController],
-  providers: [CustomModuleOneService, CustomModuleOneResolver],
-  exports: [CustomModuleOneService],
+  controllers: [custommoduleoneController],
+  providers: [custommoduleoneService, custommoduleoneResolver],
+  exports: [custommoduleoneService],
 })
-export class CustomModuleOneModule {}
+export class custommoduleoneModule {}
