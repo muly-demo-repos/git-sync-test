@@ -23,6 +23,7 @@ import { CustomerCountArgs } from "./CustomerCountArgs";
 import { CustomerFindManyArgs } from "./CustomerFindManyArgs";
 import { CustomerFindUniqueArgs } from "./CustomerFindUniqueArgs";
 import { DeleteCustomerArgs } from "./DeleteCustomerArgs";
+import { CustomerOrderByInput } from "./CustomerOrderByInput";
 import { CustomerService } from "../customer.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Customer)
@@ -120,5 +121,13 @@ export class CustomerResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.Query(() => Number)
+  async EmCaOne(
+    @graphql.Args()
+    args: CustomerOrderByInput
+  ): Promise<number> {
+    return this.service.EmCaOne(args);
   }
 }

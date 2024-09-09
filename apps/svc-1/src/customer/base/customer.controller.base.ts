@@ -26,6 +26,7 @@ import { Customer } from "./Customer";
 import { CustomerFindManyArgs } from "./CustomerFindManyArgs";
 import { CustomerWhereUniqueInput } from "./CustomerWhereUniqueInput";
 import { CustomerUpdateInput } from "./CustomerUpdateInput";
+import { CustomerOrderByInput } from "./CustomerOrderByInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -225,5 +226,22 @@ export class CustomerControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Get("/:id/em-ca-one")
+  @swagger.ApiOkResponse({
+    type: Number,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async EmCaOne(
+    @common.Body()
+    body: CustomerOrderByInput
+  ): Promise<number> {
+    return this.service.EmCaOne(body);
   }
 }
