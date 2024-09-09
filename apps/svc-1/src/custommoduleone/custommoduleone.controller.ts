@@ -28,6 +28,26 @@ export class CustomModuleOneController {
         return this.service.CmCaOne(body);
       }
 
+  @common.Get("/:id/cm-ca-split")
+  @swagger.ApiOkResponse({
+    type: String
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException
+  })
+  async CmCaSplit(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+        const args = {
+  prop1: body,
+  };
+  return this.service.CmCaSplit(args);
+      }
+
   @common.Get("/:id/cm-ca-two")
   @swagger.ApiOkResponse({
     type: DeleteUserArgs
