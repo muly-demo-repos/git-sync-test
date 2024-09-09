@@ -9,11 +9,12 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
+import { UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { passportJwtSecret } from "jwks-rsa";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import { Auth0User } from "./User";
+import { KeycloakPayload } from "./types";
 import { UserInfo } from "../../UserInfo";
 import { UserService } from "src/user/user.service";
 
@@ -22,28 +23,28 @@ export class JwtStrategyBase extends PassportStrategy(Strategy) {
     protected readonly configService: ConfigService,
     protected readonly userService: UserService
   ) {
+    const url = configService.get<string>("KEYCLOAK_URL");
+    const realm = configService.get<string>("KEYCLOAK_REALM");
+    const issuerURL = `${url}/realms/${realm}`;
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extract JWT from the Authorization header
-      audience: configService.get("AUTH0_AUDIENCE"), // The resource server where the JWT is processed
-      issuer: `${configService.get("AUTH0_ISSUER_URL")}`, // The issuing Auth0 server
-      algorithms: ["RS256"], // Asymmetric signing algorithm
+      issuer: issuerURL,
 
       secretOrKeyProvider: passportJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${configService.get(
-          "AUTH0_ISSUER_URL"
-        )}.well-known/jwks.json`,
+        jwksUri: `${issuerURL}/protocol/openid-connect/certs`,
       }),
     });
   }
 
   // Validate the received JWT and construct the user object out of the decoded token.
-  async validateBase(payload: { user: Auth0User }): Promise<UserInfo | null> {
-    const user = await this.userService.findOne({
+  async validateBase(payload: KeycloakPayload): Promise<UserInfo | null> {
+    const user = await this.userService.user({
       where: {
-        email: payload.user.email,
+        email: payload.email,
       },
     });
 

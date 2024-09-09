@@ -20,12 +20,8 @@ async function seed() {
     roles: ["user"],
     username: "admin",
   };
-  await client.user.upsert({
-    where: {
-      username: data.username,
-    },
-    update: {},
-    create: data,
+  await client.user.create({
+    data,
   });
   void client.$disconnect();
 
