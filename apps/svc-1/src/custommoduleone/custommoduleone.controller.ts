@@ -4,6 +4,7 @@ import * as errors from "../errors";
 import { CustomModuleOneService } from "./custommoduleone.service";
 import { CustomerCreateInput } from "../customer/base/CustomerCreateInput";
 import { Customer } from "../customer/base/Customer";
+import { DeleteUserArgs } from "../user/base/DeleteUserArgs";
 
 @swagger.ApiTags("customModuleOnes")
 @common.Controller("customModuleOnes")
@@ -25,5 +26,22 @@ export class CustomModuleOneController {
     body: CustomerCreateInput
   ): Promise<Customer> {
         return this.service.CmCaOne(body);
+      }
+
+  @common.Get("/:id/cm-ca-two")
+  @swagger.ApiOkResponse({
+    type: DeleteUserArgs
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException
+  })
+  async CmCaTwo(
+    @common.Body()
+    body: string
+  ): Promise<DeleteUserArgs> {
+        return this.service.CmCaTwo(body);
       }
 }

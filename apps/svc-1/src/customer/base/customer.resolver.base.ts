@@ -130,4 +130,12 @@ export class CustomerResolverBase {
   ): Promise<number> {
     return this.service.EmCaOne(args);
   }
+
+  @graphql.Query(() => String)
+  async EmCaTwo(
+    @graphql.Args("args")
+    args: number
+  ): Promise<string> {
+    return this.service.EmCaTwo(args);
+  }
 }

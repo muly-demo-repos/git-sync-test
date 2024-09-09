@@ -244,4 +244,21 @@ export class CustomerControllerBase {
   ): Promise<number> {
     return this.service.EmCaOne(body);
   }
+
+  @common.Get("/:id/em-ca-two")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async EmCaTwo(
+    @common.Body()
+    body: number
+  ): Promise<string> {
+    return this.service.EmCaTwo(body);
+  }
 }
