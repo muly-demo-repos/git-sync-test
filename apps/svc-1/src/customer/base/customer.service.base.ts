@@ -48,4 +48,7 @@ export class CustomerServiceBase {
   async EmCaOne(args: CustomerOrderByInput): Promise<number> {
     throw new Error("Not implemented");
   }
+  async EmCaTwo(args: number): Promise<string> {
+    throw new Error("Not implemented");
+  }
 }
