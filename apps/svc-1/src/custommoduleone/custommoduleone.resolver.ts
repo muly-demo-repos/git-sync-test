@@ -1,12 +1,12 @@
 import * as graphql from "@nestjs/graphql";
 import { CustomerCreateInput } from "../customer/base/CustomerCreateInput";
 import { Customer } from "../customer/base/Customer";
-import { CmCdOne } from "../customModuleOne/CmCdOne";
+import { CmCdOne } from "./CmCdOne";
 import { DeleteUserArgs } from "../user/base/DeleteUserArgs";
-import { CustomModuleOneService } from "./custommoduleone.service";
+import { custommoduleoneService } from "./custommoduleone.service";
 
-export class CustomModuleOneResolver {
-  constructor(protected readonly service: CustomModuleOneService) {}
+export class custommoduleoneResolver {
+  constructor(protected readonly service: custommoduleoneService) {}
 
   @graphql.Query(() => Customer)
   async CmCaOne(

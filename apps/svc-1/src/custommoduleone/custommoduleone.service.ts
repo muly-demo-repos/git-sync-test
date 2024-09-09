@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { CustomerCreateInput } from "../customer/base/CustomerCreateInput";
 import { Customer } from "../customer/base/Customer";
-import { CmCdOne } from "../customModuleOne/CmCdOne";
+import { CmCdOne } from "./CmCdOne";
 import { DeleteUserArgs } from "../user/base/DeleteUserArgs";
 
 @Injectable()
-export class CustomModuleOneService {
+export class custommoduleoneService {
   constructor() {}
   async CmCaOne(args: CustomerCreateInput): Promise<Customer> {
     throw new Error("Not implemented");

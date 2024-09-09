@@ -1,15 +1,15 @@
 import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import * as errors from "../errors";
-import { CustomModuleOneService } from "./custommoduleone.service";
+import { custommoduleoneService } from "./custommoduleone.service";
 import { CustomerCreateInput } from "../customer/base/CustomerCreateInput";
 import { Customer } from "../customer/base/Customer";
 import { DeleteUserArgs } from "../user/base/DeleteUserArgs";
 
-@swagger.ApiTags("customModuleOnes")
-@common.Controller("customModuleOnes")
-export class CustomModuleOneController {
-  constructor(protected readonly service: CustomModuleOneService) {}
+@swagger.ApiTags("custommoduleones")
+@common.Controller("custommoduleones")
+export class custommoduleoneController {
+  constructor(protected readonly service: custommoduleoneService) {}
 
   @common.Get("/:id/cm-ca-one")
   @swagger.ApiOkResponse({
