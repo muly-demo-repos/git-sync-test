@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Customer as PrismaCustomer } from "@prisma/client";
+import {
+  Prisma,
+  Customer as PrismaCustomer,
+  User as PrismaUser,
+} from "@prisma/client";
 import { CustomerOrderByInput } from "./CustomerOrderByInput";
 
 export class CustomerServiceBase {
@@ -44,6 +48,14 @@ export class CustomerServiceBase {
     args: Prisma.CustomerDeleteArgs
   ): Promise<PrismaCustomer> {
     return this.prisma.customer.delete(args);
+  }
+
+  async getUsers(parentId: string): Promise<PrismaUser | null> {
+    return this.prisma.customer
+      .findUnique({
+        where: { id: parentId },
+      })
+      .users();
   }
   async EmCaOne(args: CustomerOrderByInput): Promise<number> {
     throw new Error("Not implemented");
