@@ -1,6 +1,7 @@
 import * as graphql from "@nestjs/graphql";
 import { CustomerCreateInput } from "../customer/base/CustomerCreateInput";
 import { Customer } from "../customer/base/Customer";
+import { CmCdOne } from "../customModuleOne/CmCdOne";
 import { DeleteUserArgs } from "../user/base/DeleteUserArgs";
 import { CustomModuleOneService } from "./custommoduleone.service";
 
@@ -13,6 +14,14 @@ export class CustomModuleOneResolver {
     args: CustomerCreateInput
   ): Promise<Customer> {
     return this.service.CmCaOne(args);
+  }
+
+  @graphql.Query(() => String)
+  async CmCaSplit(
+    @graphql.Args()
+    args: CmCdOne
+  ): Promise<string> {
+    return this.service.CmCaSplit(args);
   }
 
   @graphql.Query(() => DeleteUserArgs)
