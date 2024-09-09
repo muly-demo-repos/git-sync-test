@@ -4,9 +4,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   ReferenceInput,
   SelectInput,
+  TextInput,
   PasswordInput,
   SelectArrayInput,
 } from "react-admin";
@@ -18,16 +18,16 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Email" source="email" type="email" />
-        <TextInput label="First Name" source="firstName" />
-        <TextInput label="Last Name" source="lastName" />
         <ReferenceInput
-          source="myCustomer.id"
+          source="customer.id"
           reference="Customer"
-          label="MyCustomer"
+          label="Customer"
         >
           <SelectInput optionText={CustomerTitle} />
         </ReferenceInput>
+        <TextInput label="Email" source="email" type="email" />
+        <TextInput label="First Name" source="firstName" />
+        <TextInput label="Last Name" source="lastName" />
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput
           source="roles"

@@ -1,13 +1,13 @@
+import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
 
 export type UserWhereInput = {
+  customer?: CustomerWhereUniqueInput;
   email?: StringNullableFilter;
   firstName?: StringNullableFilter;
   id?: StringFilter;
   lastName?: StringNullableFilter;
-  myCustomer?: CustomerWhereUniqueInput;
   sessionId?: StringNullableFilter;
   username?: StringFilter;
 };

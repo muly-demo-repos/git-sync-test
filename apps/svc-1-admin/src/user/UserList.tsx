@@ -4,8 +4,8 @@ import {
   Datagrid,
   ListProps,
   DateField,
-  TextField,
   ReferenceField,
+  TextField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { CUSTOMER_TITLE_FIELD } from "../customer/CustomerTitle";
@@ -21,17 +21,17 @@ export const UserList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
-        <TextField label="Email" source="email" />
-        <TextField label="First Name" source="firstName" />
-        <TextField label="ID" source="id" />
-        <TextField label="Last Name" source="lastName" />
         <ReferenceField
-          label="MyCustomer"
+          label="Customer"
           source="customer.id"
           reference="Customer"
         >
           <TextField source={CUSTOMER_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Email" source="email" />
+        <TextField label="First Name" source="firstName" />
+        <TextField label="ID" source="id" />
+        <TextField label="Last Name" source="lastName" />
         <TextField label="Roles" source="roles" />
         <TextField label="SessionId" source="sessionId" />
         <DateField source="updatedAt" label="Updated At" />

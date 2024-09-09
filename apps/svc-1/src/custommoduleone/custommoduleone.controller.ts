@@ -39,10 +39,13 @@ export class CustomModuleOneController {
     type: errors.ForbiddenException
   })
   async CmCaSplit(
+    @common.Param()
+    params: number,
     @common.Body()
     body: string
   ): Promise<string> {
         const args = {
+  prop2: params,
   prop1: body,
   };
   return this.service.CmCaSplit(args);
