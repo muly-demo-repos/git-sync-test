@@ -13,10 +13,8 @@ export class UserResolver extends UserResolverBase {
   constructor(
     protected readonly service: UserService,
     @nestAccessControl.InjectRolesBuilder()
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
-    @nestAccessControl.InjectRolesBuilder()
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {
-    super(service, rolesBuilder, rolesBuilder);
+    super(service, rolesBuilder);
   }
 }

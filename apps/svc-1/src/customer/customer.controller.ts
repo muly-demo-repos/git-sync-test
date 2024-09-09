@@ -10,10 +10,8 @@ export class CustomerController extends CustomerControllerBase {
   constructor(
     protected readonly service: CustomerService,
     @nestAccessControl.InjectRolesBuilder()
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
-    @nestAccessControl.InjectRolesBuilder()
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {
-    super(service, rolesBuilder, rolesBuilder);
+    super(service, rolesBuilder);
   }
 }

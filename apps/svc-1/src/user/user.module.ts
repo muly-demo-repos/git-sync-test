@@ -6,11 +6,7 @@ import { UserController } from "./user.controller";
 import { UserResolver } from "./user.resolver";
 
 @Module({
-  imports: [
-    UserModuleBase,
-    forwardRef(() => AuthModule),
-    forwardRef(() => AuthModule),
-  ],
+  imports: [UserModuleBase, forwardRef(() => AuthModule)],
   controllers: [UserController],
   providers: [UserService, UserResolver],
   exports: [UserService],

@@ -5,7 +5,7 @@ import { TEST_USER } from "../constants";
 import { UserService } from "../../../user/user.service";
 describe("Testing the jwtStrategyBase.validate()", () => {
   const userService = mock<UserService>();
-  const jwtStrategy = new JwtStrategyBase("Secret", userService);
+  const jwtStrategy = new JwtStrategyBase("Secrete", userService);
   beforeEach(() => {
     userService.user.mockClear();
   });
@@ -20,7 +20,6 @@ describe("Testing the jwtStrategyBase.validate()", () => {
     const result = jwtStrategy.validate({
       id: TEST_USER.id,
       username: TEST_USER.username,
-      sessionId: TEST_USER.sessionId,
       roles: TEST_USER.roles,
     });
     //ASSERT

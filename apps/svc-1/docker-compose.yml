@@ -9,15 +9,9 @@ services:
       - ${PORT}:3000
     environment:
       BCRYPT_SALT: ${BCRYPT_SALT}
-      DB_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRATION: ${JWT_EXPIRATION}
-      SAML_ENTRY_POINT: ${SAML_ENTRY_POINT}
-      SAML_ISSUER: ${SAML_ISSUER}
-      SAML_DECRYPT_KEY: ${SAML_DECRYPT_KEY}
-      SAML_PRIVATE_CERT: ${SAML_PRIVATE_CERT}
-      SAML_PUBLIC_CERT: ${SAML_PUBLIC_CERT}
-      SAML_REDIRECT_CALLBACK_URL: ${SAML_REDIRECT_CALLBACK_URL}
+      DB_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
     depends_on:
       - migrate
     restart: on-failure

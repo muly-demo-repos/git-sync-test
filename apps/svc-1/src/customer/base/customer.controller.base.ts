@@ -33,21 +33,11 @@ import { CustomerOrderByInput } from "./CustomerOrderByInput";
 export class CustomerControllerBase {
   constructor(
     protected readonly service: CustomerService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Customer })
-  @nestAccessControl.UseRoles({
-    resource: "Customer",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "create",
@@ -70,18 +60,9 @@ export class CustomerControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [Customer] })
   @ApiNestedQuery(CustomerFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Customer",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "read",
@@ -103,18 +84,9 @@ export class CustomerControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Customer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Customer",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "read",
@@ -143,18 +115,9 @@ export class CustomerControllerBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Customer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Customer",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "update",
@@ -190,14 +153,6 @@ export class CustomerControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Customer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Customer",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "delete",
