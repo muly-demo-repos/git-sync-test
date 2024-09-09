@@ -1,7 +1,9 @@
 import { StringFilter } from "../../util/StringFilter";
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
+import { UserListRelationFilter } from "../user/UserListRelationFilter";
 
 export type CustomerWhereInput = {
   id?: StringFilter;
-  users?: UserWhereUniqueInput;
+  orders?: OrderWhereUniqueInput;
+  users?: UserListRelationFilter;
 };

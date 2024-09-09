@@ -50,25 +50,25 @@ export class UserControllerBase {
       data: {
         ...data,
 
-        myCustomer: data.myCustomer
+        customer: data.customer
           ? {
-              connect: data.myCustomer,
+              connect: data.customer,
             }
           : undefined,
       },
       select: {
         createdAt: true,
-        email: true,
-        firstName: true,
-        id: true,
-        lastName: true,
 
-        myCustomer: {
+        customer: {
           select: {
             id: true,
           },
         },
 
+        email: true,
+        firstName: true,
+        id: true,
+        lastName: true,
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -95,17 +95,17 @@ export class UserControllerBase {
       ...args,
       select: {
         createdAt: true,
-        email: true,
-        firstName: true,
-        id: true,
-        lastName: true,
 
-        myCustomer: {
+        customer: {
           select: {
             id: true,
           },
         },
 
+        email: true,
+        firstName: true,
+        id: true,
+        lastName: true,
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -133,17 +133,17 @@ export class UserControllerBase {
       where: params,
       select: {
         createdAt: true,
-        email: true,
-        firstName: true,
-        id: true,
-        lastName: true,
 
-        myCustomer: {
+        customer: {
           select: {
             id: true,
           },
         },
 
+        email: true,
+        firstName: true,
+        id: true,
+        lastName: true,
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -180,25 +180,25 @@ export class UserControllerBase {
         data: {
           ...data,
 
-          myCustomer: data.myCustomer
+          customer: data.customer
             ? {
-                connect: data.myCustomer,
+                connect: data.customer,
               }
             : undefined,
         },
         select: {
           createdAt: true,
-          email: true,
-          firstName: true,
-          id: true,
-          lastName: true,
 
-          myCustomer: {
+          customer: {
             select: {
               id: true,
             },
           },
 
+          email: true,
+          firstName: true,
+          id: true,
+          lastName: true,
           roles: true,
           sessionId: true,
           updatedAt: true,
@@ -234,17 +234,17 @@ export class UserControllerBase {
         where: params,
         select: {
           createdAt: true,
-          email: true,
-          firstName: true,
-          id: true,
-          lastName: true,
 
-          myCustomer: {
+          customer: {
             select: {
               id: true,
             },
           },
 
+          email: true,
+          firstName: true,
+          id: true,
+          lastName: true,
           roles: true,
           sessionId: true,
           updatedAt: true,

@@ -90,9 +90,9 @@ export class UserResolverBase {
       data: {
         ...args.data,
 
-        myCustomer: args.data.myCustomer
+        customer: args.data.customer
           ? {
-              connect: args.data.myCustomer,
+              connect: args.data.customer,
             }
           : undefined,
       },
@@ -113,9 +113,9 @@ export class UserResolverBase {
         data: {
           ...args.data,
 
-          myCustomer: args.data.myCustomer
+          customer: args.data.customer
             ? {
-                connect: args.data.myCustomer,
+                connect: args.data.customer,
               }
             : undefined,
         },
@@ -152,17 +152,15 @@ export class UserResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => Customer, {
     nullable: true,
-    name: "myCustomer",
+    name: "customer",
   })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "read",
     possession: "any",
   })
-  async getMyCustomer(
-    @graphql.Parent() parent: User
-  ): Promise<Customer | null> {
-    const result = await this.service.getMyCustomer(parent.id);
+  async getCustomer(@graphql.Parent() parent: User): Promise<Customer | null> {
+    const result = await this.service.getCustomer(parent.id);
 
     if (!result) {
       return null;

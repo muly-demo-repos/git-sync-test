@@ -14,7 +14,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
+import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
 
 @InputType()
 class CustomerWhereInput {
@@ -31,15 +32,27 @@ class CustomerWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => OrderWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => OrderWhereUniqueInput)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => OrderWhereUniqueInput, {
     nullable: true,
   })
-  users?: UserWhereUniqueInput;
+  orders?: OrderWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => UserListRelationFilter)
+  @IsOptional()
+  @Field(() => UserListRelationFilter, {
+    nullable: true,
+  })
+  users?: UserListRelationFilter;
 }
 
 export { CustomerWhereInput as CustomerWhereInput };

@@ -13,10 +13,10 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsDate,
-  IsString,
-  IsOptional,
-  MaxLength,
   ValidateNested,
+  IsOptional,
+  IsString,
+  MaxLength,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Customer } from "../../customer/base/Customer";
@@ -33,6 +33,15 @@ class User {
   @Type(() => Date)
   @Field(() => Date)
   createdAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => Customer,
+  })
+  @ValidateNested()
+  @Type(() => Customer)
+  @IsOptional()
+  customer?: Customer | null;
 
   @ApiProperty({
     required: false,
@@ -76,15 +85,6 @@ class User {
     nullable: true,
   })
   lastName!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => Customer,
-  })
-  @ValidateNested()
-  @Type(() => Customer)
-  @IsOptional()
-  myCustomer?: Customer | null;
 
   @ApiProperty({
     required: true,

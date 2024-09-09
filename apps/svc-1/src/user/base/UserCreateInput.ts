@@ -11,13 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  MaxLength,
-  ValidateNested,
-} from "class-validator";
 import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import {
+  ValidateNested,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
@@ -25,6 +25,18 @@ import { InputJsonValue } from "../../types";
 
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: false,
+    type: () => CustomerWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => CustomerWhereUniqueInput)
+  @IsOptional()
+  @Field(() => CustomerWhereUniqueInput, {
+    nullable: true,
+  })
+  customer?: CustomerWhereUniqueInput | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -59,18 +71,6 @@ class UserCreateInput {
     nullable: true,
   })
   lastName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => CustomerWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => CustomerWhereUniqueInput)
-  @IsOptional()
-  @Field(() => CustomerWhereUniqueInput, {
-    nullable: true,
-  })
-  myCustomer?: CustomerWhereUniqueInput | null;
 
   @ApiProperty({
     required: true,
