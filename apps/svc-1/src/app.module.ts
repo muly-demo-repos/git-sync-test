@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { CustomerModule } from "./customer/customer.module";
-import { OrderModule } from "./order/order.module";
 import { CustomModuleOneModule } from "./custommoduleone/custommoduleone.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
@@ -22,7 +21,6 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     UserModule,
     CustomerModule,
-    OrderModule,
     CustomModuleOneModule,
     HealthModule,
     PrismaModule,

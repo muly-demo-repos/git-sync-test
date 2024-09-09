@@ -47,24 +47,9 @@ export class UserControllerBase {
   })
   async createUser(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.createUser({
-      data: {
-        ...data,
-
-        customer: data.customer
-          ? {
-              connect: data.customer,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         createdAt: true,
-
-        customer: {
-          select: {
-            id: true,
-          },
-        },
-
         email: true,
         firstName: true,
         id: true,
@@ -95,13 +80,6 @@ export class UserControllerBase {
       ...args,
       select: {
         createdAt: true,
-
-        customer: {
-          select: {
-            id: true,
-          },
-        },
-
         email: true,
         firstName: true,
         id: true,
@@ -133,13 +111,6 @@ export class UserControllerBase {
       where: params,
       select: {
         createdAt: true,
-
-        customer: {
-          select: {
-            id: true,
-          },
-        },
-
         email: true,
         firstName: true,
         id: true,
@@ -177,24 +148,9 @@ export class UserControllerBase {
     try {
       return await this.service.updateUser({
         where: params,
-        data: {
-          ...data,
-
-          customer: data.customer
-            ? {
-                connect: data.customer,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           createdAt: true,
-
-          customer: {
-            select: {
-              id: true,
-            },
-          },
-
           email: true,
           firstName: true,
           id: true,
@@ -234,13 +190,6 @@ export class UserControllerBase {
         where: params,
         select: {
           createdAt: true,
-
-          customer: {
-            select: {
-              id: true,
-            },
-          },
-
           email: true,
           firstName: true,
           id: true,
