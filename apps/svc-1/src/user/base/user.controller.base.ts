@@ -47,13 +47,28 @@ export class UserControllerBase {
   })
   async createUser(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.createUser({
-      data: data,
+      data: {
+        ...data,
+
+        myCustomer: data.myCustomer
+          ? {
+              connect: data.myCustomer,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
         email: true,
         firstName: true,
         id: true,
         lastName: true,
+
+        myCustomer: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -84,6 +99,13 @@ export class UserControllerBase {
         firstName: true,
         id: true,
         lastName: true,
+
+        myCustomer: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -115,6 +137,13 @@ export class UserControllerBase {
         firstName: true,
         id: true,
         lastName: true,
+
+        myCustomer: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         sessionId: true,
         updatedAt: true,
@@ -148,13 +177,28 @@ export class UserControllerBase {
     try {
       return await this.service.updateUser({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          myCustomer: data.myCustomer
+            ? {
+                connect: data.myCustomer,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
           email: true,
           firstName: true,
           id: true,
           lastName: true,
+
+          myCustomer: {
+            select: {
+              id: true,
+            },
+          },
+
           roles: true,
           sessionId: true,
           updatedAt: true,
@@ -194,6 +238,13 @@ export class UserControllerBase {
           firstName: true,
           id: true,
           lastName: true,
+
+          myCustomer: {
+            select: {
+              id: true,
+            },
+          },
+
           roles: true,
           sessionId: true,
           updatedAt: true,
